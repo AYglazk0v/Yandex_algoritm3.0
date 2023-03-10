@@ -1,4 +1,3 @@
-#include <algorithm>
 #include <iostream>
 #include <vector>
 
@@ -28,5 +27,18 @@ int main() {
         }
     }
     std::cout << dp[n - 1][m - 1] << "\n";
+    std::vector<char> s;
+    for (int i = n - 1, j = m -1; i != 0 || j != 0; ){
+        if ( i > 0 && dp[i - 1][j] == dp[i][j] - in[i][j]) {
+            i--;
+            s.push_back('D');
+        } else {
+            j--;
+            s.push_back('R');
+        }
+    }
+    for (auto it = s.rbegin(), ite = s.rend(); it != ite; it++){
+        std::cout << *it << " ";
+    }
     return 0;
 }
