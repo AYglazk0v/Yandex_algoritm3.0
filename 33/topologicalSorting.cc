@@ -7,9 +7,13 @@ std::vector<int> ret;
 
 void dfs(int idx, int clr, std::vector<int> &color, std::vector<std::vector<int>>& grph) {
 	color[idx] = clr;
+	if (bad_graph) {
+		return;
+	}
 	for (auto v : grph[idx]) {
 		if (color[v] == 1){
 			bad_graph = true;
+			return;
 		}
 		if (color[v] == 0) {
 			dfs(v, 1, color, grph);

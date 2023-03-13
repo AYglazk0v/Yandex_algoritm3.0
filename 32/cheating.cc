@@ -5,9 +5,13 @@ bool bad_graph = false;
 
 void dfs(int idx, int clr, std::vector<int> &color, std::vector<std::vector<int>>& grph) {
 	color[idx] = clr;
+	if (bad_graph) {
+		return;
+	}
 	for (auto v : grph[idx]) {
 		if (color[v] == clr){
 			bad_graph = true;
+			return;
 		}
 		if (color[v] == 0) {
 			dfs(v, 3 - clr, color, grph);
